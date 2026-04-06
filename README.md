@@ -20,15 +20,18 @@ COMOND/
 ├── config/             # Conexión a DB y constantes globales
 ├── public/             # Único punto de acceso (Assets: CSS, JS, Imágenes)
 │   ├── assets/
+│   │   ├── bootstrap/
+│   │   │   ├── css/
+│   │   │   └── js/
 │   │   ├── css/
 │   │   ├── img/
 │   │   └── js/
 │   └── index.php       # Tu Front Controller (punto de entrada)
 ├── src/                # Lógica del negocio (PHP puro)
-│   ├── Controllers/    # Intermediarios entre Vista y Modelo
-│   ├── Models/         # Comunicación con la Base de Datos
-│   ├── Views/          # Archivos .php con el HTML/Frontend
-│   └── Services/       # Lógica compleja (ej. Generador de PDF)
+│   ├── controllers/    # Intermediarios entre Vista y Modelo
+│   ├── models/         # Comunicación con la Base de Datos
+│   ├── views/          # Archivos .php con el HTML/Frontend
+│   └── services/       # Lógica compleja (ej. Generador de PDF)
 ├── vendor/             # Librerías externas (instaladas con Composer)
 ├── .htaccess           # Configuración de servidor para URLs amigables
 ├── README.md           # Tu archivo info.md renombrado
