@@ -7,12 +7,19 @@
 </head>
 <body>
     <header>
-
-    </header>
+        <div>
+            <div>
+                <h2>
+                    Bienvenidos a COMOND, el Control Monetario de Dayanita y Dereck
+                </h2><br>
+            </div>
+        </div>
+    </header><br>
     <section>
         <div>
             <div>
-                
+                <h4>Modulo de ingreso</h4><br>
+                <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Dolore expedita qui, ad, ratione repellendus illo inventore eligendi assumenda natus optio impedit vero! Aperiam laboriosam ducimus adipisci provident nobis dolorem fuga.</p>
             </div>
         </div>
     </section>
