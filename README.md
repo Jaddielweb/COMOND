@@ -24,39 +24,47 @@
 ### Modulo de seguridad
 
 #### Tabla: usuario
-- id_usuario
-- nom_usuario
-- user_usuario
-- pass_usuario
+- id_usuario int 11
+- nom_usuario varchar 50
+- user_usuario varchar 50
+- pass_usuario varchar 255
 
 ### Modulo de gastos
 
 #### Tabla: sueldo
-- id_sueldo
-- id_usuario
-- tipo_sueldo
-- valor_sueldo
-- fecha_sueldo
+- id_sueldo int 11
+- id_usuario int 11
+- nom_sueldo varchar 255
+- valor_sueldo decimal 15,2
+- tasa_sueldo decimal 15,2
+- moneda_sueldo char 5
+- tipo_sueldo varchar 255
+- fecha_sueldo date
 
 #### Tabla: gasto
-- id_gasto
-- id_usuario
-- id_sueldo
-- nom_gasto
-- valor_gasto
-- tasa_gasto
-- tipo_gasto
-- nota_gasto
+- id_gasto int 11
+- id_usuario int 11
+- id_sueldo int 11
+- nom_gasto varchar 255
+- valor_gasto decimal 15,2
+- tasa_gasto decimal 15,2
+- moneda_gasto char 5
+- tipo_gasto varchar 255
+- nota_gasto text null
 
-#### Tabla: adicional *(add)*
-- id_add
-- id_sueldo
-- nom_add
-- valor_add *null*
-- nota_add
-- fecha_add
+#### Tabla: adicional
+- id_add int 11
+- id_sueldo int 11
+- id_usuario int 11
+- nom_add varchar 50
+- valor_add decimal 15,2
+- tasa_adicional 15,2
+- moneda_add char 5
+- nota_add text null
+- fecha_add date
 
 #### Tabla: lista
-- id_lista
-- nom_lista
-- fecha_lista
+- id_lista int 11
+- nom_lista varchar 50
+- nota_lista text null
+- fecha_lista date
