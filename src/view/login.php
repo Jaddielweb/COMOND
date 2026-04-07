@@ -1,6 +1,6 @@
 <?php
 $title = 'Login - COMOND';
-require_once("plantillas/header.php");
+require_once __DIR__ . '/plantillas/header.php';
 ?>
 
 <div class="row justify-content-center">
@@ -13,7 +13,8 @@ require_once("plantillas/header.php");
                 <?php if (isset($_SESSION['error'])): ?>
                     <div class="alert alert-danger"><?php echo $_SESSION['error']; unset($_SESSION['error']); ?></div>
                 <?php endif; ?>
-                <form action="../controller/control-login.php" method="POST">
+                <!-- El formulario envía al front controller public/index.php con action=login. -->
+                <form action="<?php echo BASE_URL; ?>/index.php?action=login" method="POST">
                     <div class="mb-3">
                         <label for="nom_usuario" class="form-label">Nombre de Usuario</label>
                         <input type="text" class="form-control" id="nom_usuario" name="nom_usuario" required>
@@ -29,4 +30,4 @@ require_once("plantillas/header.php");
     </div>
 </div>
 
-<?php require_once("plantillas/footer.php"); ?>
+<?php require_once __DIR__ . '/plantillas/footer.php'; ?>
