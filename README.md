@@ -16,32 +16,11 @@
 * Poder alternar entre qué persona está haciendo su listado, y conservar el registro de las listas anteriores del mes, para poder comparar gastos entre personas o meses
 * Poder eliminar gastos o productos de la lista, en caso de que se haya cometido un error
 
-COMOND/
-├── config/             # Conexión a DB y constantes globales
-├── public/             # Único punto de acceso (Assets: CSS, JS, Imágenes)
-│   ├── assets/
-│   │   ├── bootstrap/
-│   │   │   ├── css/
-│   │   │   └── js/
-│   │   ├── css/
-│   │   ├── img/
-│   │   └── js/
-│   └── index.php       # Tu Front Controller (punto de entrada)
-├── src/                # Lógica del negocio (PHP puro)
-│   ├── controllers/    # Intermediarios entre Vista y Modelo
-│   ├── models/         # Comunicación con la Base de Datos
-│   ├── views/          # Archivos .php con el HTML/Frontend
-│   └── services/       # Lógica compleja (ej. Generador de PDF)
-├── vendor/             # Librerías externas (instaladas con Composer)
-├── .htaccess           # Configuración de servidor para URLs amigables
-├── README.md           # Tu archivo info.md renombrado
-└── composer.json       # Gestión de dependencias
-
 ## Base de datos
 
 ### Modulo de seguridad
 
-* Tabla: usuario
+#### Tabla: usuario
 - id_usuario
 - nom_usuario
 - user_usuario
@@ -49,14 +28,14 @@ COMOND/
 
 ### Modulo de gastos
 
-* Tabla: sueldo
+#### Tabla: sueldo
 - id_sueldo
 - id_usuario
 - tipo_sueldo
 - valor_sueldo
 - fecha_sueldo
 
-* Tabla: gasto
+#### Tabla: gasto
 - id_gasto
 - id_usuario
 - id_sueldo
@@ -66,7 +45,7 @@ COMOND/
 - tipo_gasto
 - nota_gasto
 
-* Tabla: adicional *(add)*
+#### Tabla: adicional *(add)*
 - id_add
 - id_sueldo
 - nom_add
@@ -74,7 +53,7 @@ COMOND/
 - nota_add
 - fecha_add
 
-* Tabla: lista
+#### Tabla: lista
 - id_lista
 - nom_lista
 - fecha_lista
