@@ -168,7 +168,7 @@ class Usuario extends Manejador{
 
     public function modificarUsuario(){
         try{
-            $stmt = $this->cnn->prepare("SELECT usuario SET nom_usuario = :nom_usuario, user_usuario = :user_usuario, pass_usuario = :pass_usuario")
+            $stmt = $this->cnn->prepare("UPDATE usuario SET nom_usuario = :nom_usuario, user_usuario = :user_usuario, pass_usuario = :pass_usuario")
         // Asignamos valores a los parametros
         $stmt->bindParam(':id_usuario', $this->id_usuario);
         $stmt->bindParam(':nom_usuario', $this->nom_usuario);
@@ -187,10 +187,10 @@ class Usuario extends Manejador{
 
     // DELETE Eliminar un usuario
 
-    public function eliminarUsuario(){
+    public function eliminarUsuario($id_usuario){
         try{
             $stmt = $this->cnn->prepare("DELETE FROM usuario WHERE id_usuario = :id_usuario");
-            $stmt->bindParam(':id_usuario', $this->id_usuario);
+            $stmt->bindParam(':id_usuario', $id_usuario);
             // Ejecutamos
             $stmt->execute();
             // Devuelve los resultados obtenidos 1:Exitoso, 0:Fallido
