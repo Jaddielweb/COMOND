@@ -12,9 +12,8 @@ $view = $_GET['view'] ?? 'login';
 // El parámetro action se usa para acciones que procesan formularios.
 $action = $_GET['action'] ?? null;
 
-// Si el formulario de login envía datos, procesamos la acción aquí.
-// No enviamos el formulario directamente a un archivo fuera de public.
-if ($_SERVER['REQUEST_METHOD'] === 'POST' && $action === 'login') {
+// Si es una solicitud POST (probablemente login), procesamos el controlador de login.
+if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     include __DIR__ . '/../src/controller/control-login.php';
     exit();
 }

@@ -44,4 +44,4 @@ $usuarioModel->__destruct();
     </tbody>
 </table>
 
-<?php require_once("plantillas/footer.php"); ?>
+<?php require_once(__DIR__ . '/plantillas/footer.php'); ?>

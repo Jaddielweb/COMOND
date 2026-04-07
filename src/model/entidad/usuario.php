@@ -1,6 +1,7 @@
 <?php
 
-include_once("../bd/manejador.php");
+// Usamos __DIR__ para que la ruta siempre se calcule desde este archivo.
+include_once(__DIR__ . '/../bd/manejador.php');
 
 class Usuario extends Manejador{
     private $id_usuario;
@@ -10,8 +11,14 @@ class Usuario extends Manejador{
 
 	private $cnn;
 
-    //NO SIEMPRE QUE SE CREA UN OBJETO USUARIO SE NECESITA LA CONEXION A BD
-    public function __construct(){} 
+    // NO SIEMPRE QUE SE CREA UN OBJETO USUARIO SE NECESITA LA CONEXION A BD
+    // Constructor con parámetros opcionales para permitir crear el objeto sin datos.
+    public function __construct($id_usuario = null, $nom_usuario = null, $user_usuario = null, $pass_usuario = null) {
+        $this->id_usuario = $id_usuario;
+        $this->nom_usuario = $nom_usuario;
+        $this->user_usuario = $user_usuario;
+        $this->pass_usuario = $pass_usuario;
+    }
     
     public function __activate($tipoConexion) {
         $this->cnn = parent::conectar($tipoConexion); // ejecuta conectar de la clase padre
@@ -19,13 +26,6 @@ class Usuario extends Manejador{
 
     public function __destruct(){ // Destructor de la clase, se invoca cuando se iguala a null el objeto
         parent::cerrarConexion(); // Invoca al metodo cerrarConexion de la clase padre para eliminar la conexion con la BD
-    }
-
-    public function __construct($id_usuario, $nom_usuario, $user_usuario, $pass_usuario) {
-        $this->id_usuario = $id_usuario;
-        $this->nom_usuario = $nom_usuario;
-        $this->user_usuario = $user_usuario;
-        $this->pass_usuario = $pass_usuario;
     }
 
     public function setIdUsuario($id_usuario) {
@@ -59,7 +59,6 @@ class Usuario extends Manejador{
     public function getPassUsuario() {
         return $this->pass_usuario;
     }
-}
 
     // CRUD DE USUARIO
 
@@ -67,21 +66,25 @@ class Usuario extends Manejador{
     public function autenticarUsuario( $nick , $pass ){ 
         try{	 
             $stmt = $this->cnn->prepare("SELECT * FROM usuario WHERE nom_usuario = :nom_usuario AND pass_usuario = :pass_usuario");
-            // Especificamos el fetch mode antes de llamar a fetch()
-            $stmt->setFetchMode(PDO::FETCH_ASSOC); // Devuelve los datos en un arreglo asociativo
-            // Asiganmos valores a los parametros
+            // Asignamos valores a los parametros
             $stmt->bindParam(':nom_usuario', $nick);
             $stmt->bindParam(':pass_usuario', $pass);
             // Ejecutamos
             $stmt->execute();
 
-            // Obtener un objeto usuario en lugar de un array
-            return $stmt->fetchObject('usuario');
+            $data = $stmt->fetch(PDO::FETCH_ASSOC);
+            if ($data) {
+                // Crear y devolver un objeto Usuario con datos cargados.
+                return new Usuario(
+                    $data['id_usuario'], 
+                    $data['nom_usuario'], 
+                    $data['user_usuario'], 
+                    $data['pass_usuario']
+                );
+            }
+            return false;
 
-        }catch(PDOException $error) {
-            // Mostramos un mensaje genérico de error.
-            echo "Error: ejecutando consulta SQL.".$error->getMessage();
-            exit();
+        } catch(PDOException $error) {
         } 
     }
 
@@ -110,15 +113,19 @@ class Usuario extends Manejador{
     public function consultarUsuario($id_usuario) {
         try {
             $stmt = $this->cnn->prepare("SELECT * FROM usuario WHERE id_usuario = :id_usuario");
-            // Especificamos el fetch mode antes de llamar a fetch()
-            $stmt->setFetchMode(PDO::FETCH_ASSOC); // Devuelve los datos en un arreglo asociativo
-            // Asiganmos valores a los parametros
             $stmt->bindParam(':id_usuario', $id_usuario);
-            // Ejecutamos
             $stmt->execute();
 
-            // Obtener un objeto usuario en lugar de un array
-            return $stmt->fetchObject('usuario');
+            $data = $stmt->fetch(PDO::FETCH_ASSOC);
+            if ($data) {
+                return new Usuario(
+                    $data['id_usuario'], 
+                    $data['nom_usuario'], 
+                    $data['user_usuario'], 
+                    $data['pass_usuario']
+                );
+            }
+            return false;
 
         } catch (PDOException $error) {
             echo "Error: ejecutando consulta SQL al usuario." . $error->getMessage();
@@ -168,9 +175,9 @@ class Usuario extends Manejador{
 
     public function modificarUsuario(){
         try{
-            $stmt = $this->cnn->prepare("UPDATE usuario SET nom_usuario = :nom_usuario, user_usuario = :user_usuario, pass_usuario = :pass_usuario")
-        // Asignamos valores a los parametros
-        $stmt->bindParam(':id_usuario', $this->id_usuario);
+            $stmt = $this->cnn->prepare("UPDATE usuario SET nom_usuario = :nom_usuario, user_usuario = :user_usuario, pass_usuario = :pass_usuario");
+            // Asignamos valores a los parametros
+            $stmt->bindParam(':id_usuario', $this->id_usuario);
         $stmt->bindParam(':nom_usuario', $this->nom_usuario);
         $stmt->bindParam(':user_usuario', $this->user_usuario);
         $stmt->bindParam(':pass_usuario', $this->pass_usuario);
@@ -202,5 +209,5 @@ class Usuario extends Manejador{
 				exit();
         }
     }
-
+}
 ?>

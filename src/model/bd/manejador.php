@@ -30,7 +30,7 @@
     			$dbh->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION); // Permite manejar los errores
 				
 				//DE ESTA MANERA SE PUEDEN VISUALIZAR U DEBBUGUEAR EN LA CONSOLA DEL NAVEGADOR DESDE PHP
-				// echo("<script> console.log('" . $mensaje ."' );</script>"); 
+				echo("<script> console.log('" . $mensaje ."' );</script>"); 
 				
             }catch(PDOExeption $e) {
                 die("error: " . $e->getMessage());

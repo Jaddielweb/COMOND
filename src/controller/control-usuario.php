@@ -2,7 +2,7 @@
 	session_start();
 	header('Content-Type: application/json');
 
-	require_once("../model/entidad/usuario.php");
+	require_once(__DIR__ . '/../model/entidad/usuario.php');
 
 	try {
 		// Manejar solicitud para obtener un usuario por ID

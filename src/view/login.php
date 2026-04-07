@@ -13,8 +13,8 @@ require_once __DIR__ . '/plantillas/header.php';
                 <?php if (isset($_SESSION['error'])): ?>
                     <div class="alert alert-danger"><?php echo $_SESSION['error']; unset($_SESSION['error']); ?></div>
                 <?php endif; ?>
-                <!-- El formulario envía al front controller public/index.php con action=login. -->
-                <form action="<?php echo BASE_URL; ?>/index.php?action=login" method="POST">
+                <!-- El formulario envía al front controller public/index.php. -->
+                <form action="<?php echo BASE_URL; ?>/index.php" method="POST">
                     <div class="mb-3">
                         <label for="nom_usuario" class="form-label">Nombre de Usuario</label>
                         <input type="text" class="form-control" id="nom_usuario" name="nom_usuario" required>

@@ -16,7 +16,13 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $usuario->__destruct();
 
     if ($auth) {
-        $_SESSION['usuario'] = $auth;
+        // Guardar solo datos sencillos en la sesión; no guardamos el objeto Usuario completo.
+        $_SESSION['usuario'] = [
+            'id_usuario' => $auth->getIdUsuario(),
+            'nom_usuario' => $auth->getNomUsuario(),
+            'user_usuario' => $auth->getUserUsuario()
+        ];
+
         header('Location: ' . BASE_URL . '/index.php?view=usuarios');
         exit();
     } else {
