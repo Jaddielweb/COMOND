@@ -13,7 +13,7 @@
 
 ## El programa debe cumplir/tener
 
-* Establecer sueldo base de cobros (Corresponsabilidad, Guerra) por los momentos - Se espera actualizar - para ir restando a esa cantidad los gastos, productos o pagos
+* Establecer sueldo base de cobros( Se espera actualizar ) para ir restando a esa cantidad los gastos, productos o pagos
 * Agregar gastos o productos con: Nombre, Tipo, Valor, Tasa y anotaciones
 * Exportar PDF con el listado de gastos del mes, con montos y observaciones o anotaciones
 * Poder alternar entre qué persona está haciendo su listado, y conservar el registro de las listas anteriores del mes, para poder comparar gastos entre personas o meses
