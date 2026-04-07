@@ -1,5 +1,5 @@
 <?php
-$title = 'Login - COMOND';
+$title = 'COMOND | Login';
 require_once __DIR__ . '/plantillas/header.php';
 ?>
 

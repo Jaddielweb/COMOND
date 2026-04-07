@@ -1,6 +1,6 @@
 <?php
 // Esta vista solo se carga si hay sesión iniciada.
-$title = 'Usuarios - COMOND';
+$title = 'COMOND | Usuarios';
 require_once __DIR__ . '/plantillas/header.php';
 
 if (!isset($_SESSION['usuario'])) {
