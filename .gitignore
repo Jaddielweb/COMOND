@@ -1,0 +1,7 @@
+# Configuración de Base de Datos (Privado)
+src/model/bd/config.php
+src/model/bd/manejador.php
+
+# Otros archivos que no deberían subir
+.env
+/vendor/

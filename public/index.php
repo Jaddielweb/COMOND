@@ -5,6 +5,7 @@ session_start();
 $protocol = (!empty($_SERVER['HTTPS']) && $_SERVER['HTTPS'] !== 'off') ? 'https' : 'http';
 $basePath = dirname($_SERVER['SCRIPT_NAME']);
 $basePath = rtrim(str_replace('\\', '/', $basePath), '/');
+$basePath = preg_replace('@/public$@', '', $basePath);
 define('BASE_URL', $protocol . '://' . $_SERVER['HTTP_HOST'] . $basePath);
 
 // El parámetro view controla qué vista se muestra.
