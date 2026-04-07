@@ -1,0 +1,13 @@
+<IfModule mod_rewrite.c>
+    RewriteEngine On
+
+    # Si la ruta es la raíz, enviar a public/index.php directamente
+    RewriteRule ^$ public/index.php [L]
+
+    # Si la URL no contiene public, redirigirla internamente a public/
+    RewriteCond %{REQUEST_URI} !^/public/
+    RewriteRule ^(.*)$ public/$1 [L]
+</IfModule>
+
+# Usar public/index.php como archivo índice
+DirectoryIndex public/index.php

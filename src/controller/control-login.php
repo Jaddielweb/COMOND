@@ -7,8 +7,14 @@ if (session_status() !== PHP_SESSION_ACTIVE) {
 require_once __DIR__ . '/../model/entidad/usuario.php';
 
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-    $nom_usuario = $_POST['nom_usuario'];
-    $pass_usuario = $_POST['pass_usuario'];
+    $nom_usuario = trim($_POST['nom_usuario'] ?? '');
+    $pass_usuario = trim($_POST['pass_usuario'] ?? '');
+
+    if ($nom_usuario === '' || $pass_usuario === '') {
+        $_SESSION['error'] = 'Debes ingresar usuario y contraseña.';
+        header('Location: ' . BASE_URL . '/index.php?view=login');
+        exit();
+    }
 
     $usuario = new Usuario();
     $usuario->__activate(1);
@@ -16,7 +22,9 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $usuario->__destruct();
 
     if ($auth) {
-        // Guardar solo datos sencillos en la sesión; no guardamos el objeto Usuario completo.
+        session_regenerate_id(true);
+
+        // Guardar solo datos simples en sesión para evitar serializar objetos.
         $_SESSION['usuario'] = [
             'id_usuario' => $auth->getIdUsuario(),
             'nom_usuario' => $auth->getNomUsuario(),
