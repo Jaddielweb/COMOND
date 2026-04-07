@@ -65,6 +65,7 @@
 
 #### Tabla: lista
 - id_lista int 11
+- id_usuario int 11
 - nom_lista varchar 50
 - nota_lista text null
 - fecha_lista date
